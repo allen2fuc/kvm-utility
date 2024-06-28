@@ -76,4 +76,9 @@ public interface VirshStoragePoolService {
      */
     Map<String, Object> dumpStoragePoolXmlFormatted(String name);
 
+    /**
+     * 激活存储池
+     * @param name 存储池名称
+     */
+    void startStoragePool(String name);
 }

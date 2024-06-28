@@ -135,4 +135,14 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
         Map<String, String> param = Map.of("name", name);
         return runToXmlFormat(StrUtil.format(DUMP_POOL_XML, param));
     }
+
+    /**
+     * 激活存储池
+     * @param name 存储池名称
+     */
+    @Override
+    public void startStoragePool(String name){
+        Map<String, String> param = Map.of("name", name);
+        run(StrUtil.format(START_POOL, param));
+    }
 }
