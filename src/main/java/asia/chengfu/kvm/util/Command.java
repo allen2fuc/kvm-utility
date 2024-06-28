@@ -109,7 +109,7 @@ public class Command {
      * @return 命令执行结果字符串
      */
     public String execute() {
-        return VirshRun.executeCommand(builder.toString());
+        return CommandRun.executeCommand(builder.toString());
     }
 
     /**
@@ -118,7 +118,7 @@ public class Command {
      * @return 命令执行结果的 Map 对象
      */
     public Map<String, Object> executeToMap() {
-        return VirshRun.executeCommandToMap(builder.toString());
+        return CommandRun.executeCommandToMap(builder.toString());
     }
 
     /**
@@ -127,8 +127,18 @@ public class Command {
      * @return 命令执行结果的列表
      */
     public List<Map<String, Object>> executeToList() {
-        return VirshRun.executeCommandToList(builder.toString());
+        return CommandRun.executeCommandToList(builder.toString());
     }
+
+    /**
+     * 执行命令，并返回命令执行结果的列表。
+     * @param existingParserParam 解析响应成功数据的参数
+     * @return 命令执行结果的列表
+     */
+    public List<Map<String, Object>> executeToList(ContentSplitterListParam<String, Object> existingParserParam) {
+        return CommandRun.executeCommandToList(builder.toString(), existingParserParam);
+    }
+
 
     /**
      * 获取当前 Command 对象的命令字符串表示。

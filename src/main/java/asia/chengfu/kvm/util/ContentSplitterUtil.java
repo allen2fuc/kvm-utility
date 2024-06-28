@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * @author fucheng on 2024/6/26
  */
-public final class VirshRespUtil {
+public final class ContentSplitterUtil {
 
     /**
      * 将info的详情数据转换为Map集合
@@ -32,5 +32,16 @@ public final class VirshRespUtil {
      */
     public static List<Map<String, Object>> listToList(String listContent){
         return StrSplit.splitToList(listContent, StrPool.LF, "  ", line -> StrUtil.startWith(line, "---"), StrUtil::trim, (k, v) -> StrUtil.trim(v));
+    }
+
+    /**
+     * 将list的列表项转换为list
+     * @param param 参数
+     * @return 集合列表
+     */
+    public static List<Map<String, Object>> listToList(ContentSplitterListParam<String, Object> param){
+        return StrSplit.splitToList(param.getContent(), param.getLineSeparator(),
+                param.getColumnSeparator(), param.getFilterFun(), param.getKeyFun(),
+                param.getValueFun());
     }
 }

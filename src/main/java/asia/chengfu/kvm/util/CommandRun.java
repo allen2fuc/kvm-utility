@@ -2,7 +2,6 @@ package asia.chengfu.kvm.util;
 
 import asia.chengfu.kvm.exception.CommandRunException;
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import cn.hutool.core.util.StrUtil;
@@ -14,13 +13,14 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
- * VirshRun类用于执行Virsh命令，并处理命令的响应。
+ * CommandRun类用于执行命令，并处理命令的响应。
  */
-public final class VirshRun {
+public final class CommandRun {
 
-    private static final Logger logger = LoggerFactory.getLogger(VirshRun.class);
+    private static final Logger logger = LoggerFactory.getLogger(CommandRun.class);
 
     /**
      * 运行指定的命令，并返回响应字符串。
@@ -49,16 +49,39 @@ public final class VirshRun {
      * @return 转换后的列表
      */
     public static List<Map<String, Object>> executeCommandToList(String command) {
+        // 响应为空时，返回空列表
+        return executeCommandTo(command, ContentSplitterUtil::listToList, Collections.emptyList());
+    }
+
+    /**
+     * 执行命令返回集合
+     * @param command 命令
+     * @param existingParserParam 对成功的数据解析参数
+     * @return 数据
+     */
+    public static List<Map<String, Object>> executeCommandToList(String command, ContentSplitterListParam<String, Object> existingParserParam) {
+        // 响应为空时，返回空列表
+        return executeCommandTo(command, f -> ContentSplitterUtil.listToList(existingParserParam), Collections.emptyList());
+    }
+
+    /**
+     * 执行命令
+     * @param command 命令
+     * @param existing 数据存在则执行
+     * @param missing 数据不存在则执行
+     * @return 数据题
+     */
+    public static <T> T executeCommandTo(String command, Function<String, T> existing, T missing) {
         // 执行命令并获取响应
         String response = executeCommand(command);
 
         // 如果响应不为空，将其转换为列表
         if (StrUtil.isNotBlank(response)) {
-            return VirshRespUtil.listToList(response);
+            return existing.apply(response);
         }
 
         // 响应为空时，返回空列表
-        return Collections.emptyList();
+        return missing;
     }
 
     /**
@@ -67,16 +90,8 @@ public final class VirshRun {
      * @return 转换后的Map对象
      */
     public static Map<String, Object> executeCommandToMap(String command) {
-        // 执行命令并获取响应
-        String response = executeCommand(command);
+        return executeCommandTo(command, ContentSplitterUtil::infoToMap, Collections.emptyMap());
 
-        // 如果响应不为空，将其转换为Map
-        if (StrUtil.isNotBlank(response)) {
-            return VirshRespUtil.infoToMap(response);
-        }
-
-        // 响应为空时，返回空Map
-        return MapUtil.empty();
     }
 
     /**
