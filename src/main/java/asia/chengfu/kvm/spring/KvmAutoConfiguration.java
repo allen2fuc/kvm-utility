@@ -2,13 +2,13 @@ package asia.chengfu.kvm.spring;
 
 import asia.chengfu.kvm.service.*;
 import asia.chengfu.kvm.service.impl.*;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author fucheng on 2024/6/28
  */
-@Configuration
+@AutoConfiguration
 public class KvmAutoConfiguration {
 
     @Bean
