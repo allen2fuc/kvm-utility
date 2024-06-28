@@ -5,7 +5,6 @@ import cn.hutool.core.map.MapBuilder;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import cn.hutool.core.util.StrUtil;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.Map;
 /**
  * OsSupportServiceImpl类实现了OsSupportService接口，用于获取支持的操作系统列表。
  */
-@Service
 public class OsSupportServiceImpl implements OsSupportService {
     private static final String OS_LIST = "osinfo-query os";
 

@@ -4,12 +4,10 @@ import asia.chengfu.kvm.service.AbstractVirshService;
 import asia.chengfu.kvm.service.VirshStorageVolumeService;
 import cn.hutool.core.io.unit.DataSize;
 import cn.hutool.core.util.StrUtil;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
-@Service
 public class VirshStorageVolumeServiceImpl extends AbstractVirshService implements VirshStorageVolumeService {
 
     // Virsh命令常量

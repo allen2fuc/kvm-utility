@@ -4,7 +4,6 @@ import asia.chengfu.kvm.service.AbstractVirshService;
 import asia.chengfu.kvm.service.VirshStoragePoolService;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +11,6 @@ import java.util.Map;
 /**
  * @author fucheng on 2024/6/27
  */
-@Service
 public class VirshStoragePoolServiceImpl extends AbstractVirshService implements VirshStoragePoolService {
 
     // Virsh命令常量

@@ -1,20 +1,16 @@
 package asia.chengfu.kvm.service.impl;
 
-import asia.chengfu.kvm.util.Command;
-import asia.chengfu.kvm.util.Options;
 import asia.chengfu.kvm.service.AbstractVirshService;
 import asia.chengfu.kvm.service.VirshDomainService;
 import asia.chengfu.kvm.service.VirshStorageVolumeService;
+import asia.chengfu.kvm.util.Command;
+import asia.chengfu.kvm.util.Options;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
-@Service
-@RequiredArgsConstructor
 public class VirshDomainServiceImpl extends AbstractVirshService implements VirshDomainService {
     // Virsh命令常量
     private static final String LIST_DOMAINS = "list --all";
@@ -32,6 +28,10 @@ public class VirshDomainServiceImpl extends AbstractVirshService implements Virs
     private static final String DUMP_DOMAIN_XML = "dumpxml --domain {name}";
 
     private final VirshStorageVolumeService volumeService;
+
+    public VirshDomainServiceImpl(VirshStorageVolumeService volumeService) {
+        this.volumeService = volumeService;
+    }
 
     /**
      * 启动指定的域

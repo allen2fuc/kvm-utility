@@ -3,12 +3,10 @@ package asia.chengfu.kvm.service.impl;
 import asia.chengfu.kvm.service.AbstractVirshService;
 import asia.chengfu.kvm.service.VirshSnapshotService;
 import cn.hutool.core.util.StrUtil;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
-@Service
 public class VirshSnapshotServiceImpl extends AbstractVirshService implements VirshSnapshotService {
     // Virsh命令常量
     private static final String LIST_SNAPSHOTS = "snapshot-list --domain {domain}";
