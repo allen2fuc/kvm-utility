@@ -32,7 +32,18 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
      */
     @Override
     public void createStoragePool(String name, String dir) {
-        Map<String, String> param = Map.of("name", name, "type", "dir", "target", dir);
+        createStoragePool(name, "dir", dir);
+    }
+
+    /**
+     * 创建存储池
+     * @param name 存储池名称
+     * @param type 存储类型
+     * @param dir 存储池地址
+     */
+    @Override
+    public void createStoragePool(String name, String type, String dir) {
+        Map<String, String> param = Map.of("name", name, "type", type, "target", dir);
 
         if (!FileUtil.isDirectory(dir)) {
             FileUtil.mkdir(dir);

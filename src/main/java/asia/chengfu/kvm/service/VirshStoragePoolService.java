@@ -17,6 +17,14 @@ public interface VirshStoragePoolService {
     void createStoragePool(String name, String target);
 
     /**
+     * 创建存储池
+     * @param name 存储池名称
+     * @param type 存储类型
+     * @param dir 存储池地址
+     */
+    void createStoragePool(String name, String type, String dir);
+
+    /**
      * 列出所有存储池
      *
      * @return 存储池列表，每个存储池信息用Map表示
