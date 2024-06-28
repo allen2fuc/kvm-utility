@@ -1,6 +1,1 @@
-asia.chengfu.kvm.service.impl.OsSupportServiceImpl
-asia.chengfu.kvm.service.impl.VirshDomainServiceImpl
-asia.chengfu.kvm.service.impl.VirshNetworkInterfaceServiceImpl
-asia.chengfu.kvm.service.impl.VirshSnapshotServiceImpl
-asia.chengfu.kvm.service.impl.VirshStoragePoolServiceImpl
-asia.chengfu.kvm.service.impl.VirshStorageVolumeServiceImpl
+asia.chengfu.kvm.spring.KvmAutoConfiguration
