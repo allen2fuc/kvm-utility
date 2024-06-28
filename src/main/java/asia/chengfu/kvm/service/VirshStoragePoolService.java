@@ -81,4 +81,16 @@ public interface VirshStoragePoolService {
      * @param name 存储池名称
      */
     void startStoragePool(String name);
+
+    /**
+     * 刷新定义存储池
+     * @param name 存储池名称
+     */
+    void refreshStoragePool(String name);
+
+    /**
+     * 取消定义存储池
+     * @param name 存储池名称
+     */
+    void undefineStoragePool(String name);
 }
