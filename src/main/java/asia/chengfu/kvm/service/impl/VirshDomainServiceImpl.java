@@ -156,4 +156,12 @@ public class VirshDomainServiceImpl extends AbstractVirshService implements Virs
         return runToXmlFormat(StrUtil.format(DUMP_DOMAIN_XML, param));
     }
 
+    /**
+     * 获取所有虚拟机信息
+     * @return 虚拟机列表
+     */
+    @Override
+    public List<Map<String, Object>> list(){
+        return runToList(LIST_DOMAINS);
+    }
 }

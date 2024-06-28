@@ -1,5 +1,6 @@
 package asia.chengfu.kvm.service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -70,4 +71,10 @@ public interface VirshDomainService {
      * @return 域的XML描述，用Map表示
      */
     Map<String, Object> dumpXmlFormat(String name);
+
+    /**
+     * 列出所有虚拟机信息
+     * @return 所有虚拟机列表信息
+     */
+    List<Map<String, Object>> list();
 }
