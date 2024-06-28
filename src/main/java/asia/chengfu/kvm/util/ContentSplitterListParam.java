@@ -10,18 +10,16 @@ import java.util.function.Predicate;
  * @author fucheng on 2024/6/28
  */
 public class ContentSplitterListParam<K, V> {
-    private String content;
     private String lineSeparator;
     private String columnSeparator;
     private Predicate<String> filterFun;
     private Function<String, K> keyFun;
     private BiFunction<String, K, V> valueFun;
 
-    public static <K, V> ContentSplitterListParam<K, V> of(String content, String lineSeparator,
+    public static <K, V> ContentSplitterListParam<K, V> of(String lineSeparator,
                                                            String columnSeparator, Predicate<String> filterLine,
                                                            Function<String, K> keyFun, BiFunction<String, K, V> value) {
         ContentSplitterListParam<K, V> param = new ContentSplitterListParam<>();
-        param.setContent(content);
         param.setLineSeparator(lineSeparator);
         param.setColumnSeparator(columnSeparator);
         param.setFilterFun(filterLine);
@@ -30,21 +28,12 @@ public class ContentSplitterListParam<K, V> {
         return param;
     }
 
-    public static ContentSplitterListParam<String, Object> str(String content, String columnSeparator, Predicate<String> filterLine) {
-        return of(content, StrUtil.LF, columnSeparator, filterLine, StrUtil::trim, (k, v) -> StrUtil.trim(v));
+    public static ContentSplitterListParam<String, Object> str(String columnSeparator, Predicate<String> filterLine) {
+        return of(StrUtil.LF, columnSeparator, filterLine, StrUtil::trim, (k, v) -> StrUtil.trim(v));
     }
 
-    public static ContentSplitterListParam<String, Object> str(String content, String columnSeparator) {
-        return of(content, StrUtil.LF, columnSeparator, line -> false, StrUtil::trim, (k, v) -> StrUtil.trim(v));
-    }
-
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public static ContentSplitterListParam<String, Object> str(String columnSeparator) {
+        return of(StrUtil.LF, columnSeparator, line -> false, StrUtil::trim, (k, v) -> StrUtil.trim(v));
     }
 
     public String getLineSeparator() {

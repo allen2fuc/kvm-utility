@@ -61,7 +61,7 @@ public final class CommandRun {
      */
     public static List<Map<String, Object>> executeCommandToList(String command, ContentSplitterListParam<String, Object> existingParserParam) {
         // 响应为空时，返回空列表
-        return executeCommandTo(command, f -> ContentSplitterUtil.listToList(existingParserParam), Collections.emptyList());
+        return executeCommandTo(command, f -> ContentSplitterUtil.listToList(f, existingParserParam), Collections.emptyList());
     }
 
     /**

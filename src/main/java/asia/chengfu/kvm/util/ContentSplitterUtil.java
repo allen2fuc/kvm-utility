@@ -39,8 +39,8 @@ public final class ContentSplitterUtil {
      * @param param 参数
      * @return 集合列表
      */
-    public static List<Map<String, Object>> listToList(ContentSplitterListParam<String, Object> param){
-        return StrSplit.splitToList(param.getContent(), param.getLineSeparator(),
+    public static List<Map<String, Object>> listToList(String listContent, ContentSplitterListParam<String, Object> param){
+        return StrSplit.splitToList(listContent, param.getLineSeparator(),
                 param.getColumnSeparator(), param.getFilterFun(), param.getKeyFun(),
                 param.getValueFun());
     }

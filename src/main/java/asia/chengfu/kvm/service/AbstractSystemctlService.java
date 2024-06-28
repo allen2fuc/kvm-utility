@@ -1,6 +1,8 @@
 package asia.chengfu.kvm.service;
 
 import asia.chengfu.kvm.util.Command;
+import asia.chengfu.kvm.util.ContentSplitterListParam;
+import cn.hutool.core.text.StrPool;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +24,7 @@ public abstract class AbstractSystemctlService implements SystemctlService {
      */
     protected List<Map<String, Object>> runToList(String command) {
         // 实现运行Virsh命令并转换为List的逻辑
-        return Command.of(SYSTEMCTL, command).executeToList();
+        return Command.of(SYSTEMCTL, command).executeToList(ContentSplitterListParam.str(StrPool.TAB));
     }
 
 }
