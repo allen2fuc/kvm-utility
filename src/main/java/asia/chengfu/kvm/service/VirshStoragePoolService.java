@@ -43,6 +43,15 @@ public interface VirshStoragePoolService {
     String destroyStoragePool(String name);
 
     /**
+     * 销毁指定存储池
+     *
+     * @param name 存储池名称
+     * @param isDelDir 是否删除目录
+     * @return 执行结果
+     */
+    String destroyStoragePool(String name, boolean isDelDir);
+
+    /**
      * 禁用指定存储池的自动启动
      *
      * @param name 存储池名称

@@ -2,8 +2,8 @@ package asia.chengfu.kvm.service.impl;
 
 import asia.chengfu.kvm.service.AbstractVirshService;
 import asia.chengfu.kvm.service.VirshStoragePoolService;
-import asia.chengfu.kvm.util.CommandRun;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.text.StrPool;
 import cn.hutool.core.util.StrUtil;
 
@@ -90,7 +90,36 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
     public String destroyStoragePool(String name) {
         Map<String, String> param = Map.of("name", name);
         return run(StrUtil.format(DESTROY_POOL, param));
-        // run(StrUtil.format(UNDEFINE_POOL, param));
+    }
+
+    /**
+     * 销毁存储池
+     *
+     * @param name 存储池名称
+     * @param isDelDir 是否删除目录
+     * @return 命令执行结果
+     */
+    @Override
+    public String destroyStoragePool(String name, boolean isDelDir) {
+        Map<String, String> param = Map.of("name", name);
+
+        Map<String, Object> info = dumpStoragePoolXmlFormatted(name);
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(destroyStoragePool(name)).append(StrPool.LF);
+        builder.append(run(StrUtil.format(UNDEFINE_POOL, param))).append(StrPool.LF);
+
+        if (isDelDir){
+            if (MapUtil.isNotEmpty(info)){
+                Map target = MapUtil.getQuietly(info, "target", Map.class, MapUtil.empty());
+                String path = MapUtil.getStr(target, "path");
+                if (FileUtil.isDirectory(path)){
+                    FileUtil.del(path);
+                }
+            }
+        }
+
+        return builder.toString();
     }
 
     /**
