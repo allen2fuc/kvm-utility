@@ -119,10 +119,7 @@ public final class CommandRun {
             String absolutePath = file.getAbsolutePath();
 
             // 格式化命令，替换文件路径占位符
-            String completedCommand = commandFunc.apply(absolutePath);
-
-            // 执行命令并返回响应
-            return executeCommand(completedCommand);
+            return commandFunc.apply(absolutePath);
         } finally {
             // 删除临时文件
             if (FileUtil.exist(file)) {

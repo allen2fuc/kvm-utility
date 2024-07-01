@@ -63,7 +63,10 @@ public abstract class AbstractVirshService implements VirshService {
      * @return 第二个命令执行的结果
      */
     protected String runThen(String dumpXmlCommand, Function<String, String> generateCommand) {
-        return CommandRun.executeXmlCommand(run(dumpXmlCommand), generateCommand);
+        return CommandRun.executeXmlCommand(run(dumpXmlCommand), filePath -> {
+            String command = generateCommand.apply(filePath);
+            return run(command);
+        });
     }
 
 }
