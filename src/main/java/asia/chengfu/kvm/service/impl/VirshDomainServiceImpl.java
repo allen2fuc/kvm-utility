@@ -123,7 +123,7 @@ public class VirshDomainServiceImpl extends AbstractVirshService implements Virs
         // 1. 创建卷
         String volumeName = StrUtil.isBlank(volName) ? IdUtil.randomUUID() + "." + voltype : volName;
         volumeService.createVolume(volumeName, pool, volCapacity, voltype);
-        String volumePath = volumeService.getVolumePath(volumeName, pool);
+//        String volumePath = volumeService.getVolumePath(volumeName, pool);
 
         Options params = Options.of(Map.of(
                 "name", name,
@@ -132,7 +132,7 @@ public class VirshDomainServiceImpl extends AbstractVirshService implements Virs
                 "vcpus", cpu,
                 "location", iso,
                 "osVariant", osVariant,
-                "disk", "vol=" + volumePath,
+                "disk", "vol=" + StrUtil.format("{}/{}", pool, volName),
                 "graphics", "vnc,listen=0.0.0.0"
         ), List.of("noautoconsole"));
 
