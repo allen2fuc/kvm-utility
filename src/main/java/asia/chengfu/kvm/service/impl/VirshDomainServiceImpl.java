@@ -132,7 +132,7 @@ public class VirshDomainServiceImpl extends AbstractVirshService implements Virs
                 "vcpus", cpu,
                 "location", iso,
                 "osVariant", osVariant,
-                "disk", "vol=" + StrUtil.format("{}/{}", pool, volName),
+                "disk", "vol=" + StrUtil.format("{}/{}", pool, volumeName),
                 "graphics", "vnc,listen=0.0.0.0"
         ), List.of("noautoconsole"));
 
