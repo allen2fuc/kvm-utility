@@ -93,4 +93,10 @@ public interface VirshStoragePoolService {
      * @param name 存储池名称
      */
     void undefineStoragePool(String name);
+
+    /**
+     * 删除存储池
+     * @param name 存储池名称
+     */
+    void deleteStoragePool(String name);
 }

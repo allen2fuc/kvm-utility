@@ -24,6 +24,7 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
     private static final String UNDEFINE_POOL = "pool-undefine --pool {name}";
     private static final String DUMP_POOL_XML = "pool-dumpxml --pool {name}";
     private static final String REFRESH_POOL = "pool-refresh --pool {name}";
+    private static final String DELETE_POOL = "pool-delete --pool {name}";
 
 
     /**
@@ -166,5 +167,15 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
     public void undefineStoragePool(String name){
         Map<String, String> param = Map.of("name", name);
         run(StrUtil.format(UNDEFINE_POOL, param));
+    }
+
+    /**
+     * 删除存储池
+     * @param name 存储池名称
+     */
+    @Override
+    public void deleteStoragePool(String name) {
+        Map<String, String> param = Map.of("name", name);
+        run(StrUtil.format(DELETE_POOL, param));
     }
 }
