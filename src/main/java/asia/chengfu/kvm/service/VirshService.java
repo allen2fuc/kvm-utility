@@ -7,4 +7,7 @@ public interface VirshService {
 
     String VIRSH = "virsh";
 
+    String CONF = "/etc/libvirt";
+
+    String DEFAULT_STORAGE = "/var/lib/libvirt";
 }

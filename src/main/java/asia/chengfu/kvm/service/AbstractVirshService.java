@@ -1,10 +1,12 @@
 package asia.chengfu.kvm.service;
 
 import asia.chengfu.kvm.util.Command;
+import asia.chengfu.kvm.util.CommandRun;
 import asia.chengfu.kvm.xml.VirshXmlParser;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 
 /**
@@ -49,6 +51,19 @@ public abstract class AbstractVirshService implements VirshService {
      */
     protected Map<String, Object> runToXmlFormat(String command) {
         return VirshXmlParser.parseXmlAndFormat(run(command));
+    }
+
+    /**
+     * 第一个命令生产文件名，第二个命令对文件名操作
+     * filePath 是第一个命令生成的临时文件
+     * 如第一个命令：virsh pool-dumpxml data
+     * 第二个命令：virsh pool-define filePath
+     * @param dumpXmlCommand 第一个命令
+     * @param generateCommand 第二个命令
+     * @return 第二个命令执行的结果
+     */
+    protected String runThen(String dumpXmlCommand, Function<String, String> generateCommand) {
+        return CommandRun.executeXmlCommand(run(dumpXmlCommand), generateCommand);
     }
 
 }

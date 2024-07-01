@@ -97,10 +97,10 @@ public final class CommandRun {
     /**
      * 执行带有XML内容的命令
      * @param xmlContent XML内容
-     * @param command 要执行的命令模板（如：virsh create {fileDir}）
+     * @param commandFunc 要执行的命令模板（如：virsh create {fileDir}）
      * @return 命令的响应
      */
-    public static String executeXmlCommand(String xmlContent, String command) {
+    public static String executeXmlCommand(String xmlContent, Function<String, String> commandFunc) {
         File file = null;
         try {
             // 获取系统临时目录
@@ -119,7 +119,7 @@ public final class CommandRun {
             String absolutePath = file.getAbsolutePath();
 
             // 格式化命令，替换文件路径占位符
-            String completedCommand = StrUtil.format(command, Map.of("fileDir", absolutePath));
+            String completedCommand = commandFunc.apply(absolutePath);
 
             // 执行命令并返回响应
             return executeCommand(completedCommand);
