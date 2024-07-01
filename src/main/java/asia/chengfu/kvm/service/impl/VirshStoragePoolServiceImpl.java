@@ -3,7 +3,6 @@ package asia.chengfu.kvm.service.impl;
 import asia.chengfu.kvm.service.AbstractVirshService;
 import asia.chengfu.kvm.service.VirshStoragePoolService;
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.text.StrPool;
 import cn.hutool.core.util.StrUtil;
 
@@ -95,7 +94,7 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
     /**
      * 销毁存储池
      *
-     * @param name 存储池名称
+     * @param name     存储池名称
      * @param isDelDir 是否删除目录
      * @return 命令执行结果
      */
@@ -109,13 +108,10 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
         builder.append(destroyStoragePool(name)).append(StrPool.LF);
         builder.append(run(StrUtil.format(UNDEFINE_POOL, param))).append(StrPool.LF);
 
-        if (isDelDir){
-            if (MapUtil.isNotEmpty(info)){
-                Map target = MapUtil.getQuietly(info, "target", Map.class, MapUtil.empty());
-                String path = MapUtil.getStr(target, "path");
-                if (FileUtil.isDirectory(path)){
-                    FileUtil.del(path);
-                }
+        if (isDelDir) {
+            String path = asia.chengfu.kvm.util.MapUtil.getStr(info, "target", "path");
+            if (FileUtil.isDirectory(path)) {
+                FileUtil.del(path);
             }
         }
 
@@ -188,7 +184,7 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
      * @return 命令执行结果
      */
     @Override
-    public String startStoragePool(String name){
+    public String startStoragePool(String name) {
         Map<String, String> param = Map.of("name", name);
         return run(StrUtil.format(START_POOL, param));
     }
@@ -200,7 +196,7 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
      * @return 命令执行结果
      */
     @Override
-    public String refreshStoragePool(String name){
+    public String refreshStoragePool(String name) {
         Map<String, String> param = Map.of("name", name);
         return run(StrUtil.format(REFRESH_POOL, param));
     }
@@ -212,7 +208,7 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
      * @return 命令执行结果
      */
     @Override
-    public String undefineStoragePool(String name){
+    public String undefineStoragePool(String name) {
         Map<String, String> param = Map.of("name", name);
         return run(StrUtil.format(UNDEFINE_POOL, param));
     }

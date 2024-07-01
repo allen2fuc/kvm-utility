@@ -37,13 +37,11 @@ public final class MapUtil {
 
             if (obj instanceof Map){
                 tmp = (Map)obj;
-            }else {
-                break;
             }
-
         }
 
-        throw new RuntimeException("深度不一致，请检查 [" + StrUtil.join(",", keys) + "]");
+//        throw new RuntimeException("深度不一致，请检查 [" + StrUtil.join(",", keys) + "]");
+        return null;
     }
 
 }
