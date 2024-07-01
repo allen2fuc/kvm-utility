@@ -46,10 +46,11 @@ public class VirshStorageVolumeServiceImpl extends AbstractVirshService implemen
      *
      * @param name 卷名称
      * @param pool 存储池名称
+     * @return 命令执行结果
      */
     @Override
-    public void deleteVolume(String name, String pool) {
-        run(StrUtil.format(DELETE_VOLUME, Map.of("name", name, "pool", pool)));
+    public String deleteVolume(String name, String pool) {
+        return run(StrUtil.format(DELETE_VOLUME, Map.of("name", name, "pool", pool)));
     }
 
     /**
@@ -59,11 +60,12 @@ public class VirshStorageVolumeServiceImpl extends AbstractVirshService implemen
      * @param pool     存储池名称
      * @param capacity 容量大小
      * @param format   卷格式类型：raw、bochs、qcow、qcow2、qed、vmdk
+     * @return 命令执行结果
      */
     @Override
-    public void createVolume(String name, String pool, String capacity, String format) {
+    public String createVolume(String name, String pool, String capacity, String format) {
         long capacityBytes = DataSize.parse(capacity).toBytes();
-        run(StrUtil.format(CREATE_VOLUME, Map.of("name", name, "pool", pool, "capacity", capacityBytes, "format", format)));
+        return run(StrUtil.format(CREATE_VOLUME, Map.of("name", name, "pool", pool, "capacity", capacityBytes, "format", format)));
     }
 
     /**

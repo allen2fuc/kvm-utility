@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @author fucheng on 2024/6/27
  */
-public interface VirshNetworkInterfaceService {
+public interface VirshInterfaceService {
     /**
      * 列出所有网络接口
      * @return 网络接口列表，每个接口信息用Map表示

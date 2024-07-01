@@ -32,8 +32,8 @@ public class KvmAutoConfiguration {
     }
 
     @Bean
-    public VirshNetworkInterfaceService virshNetworkInterfaceService(){
-        return new VirshNetworkInterfaceServiceImpl();
+    public VirshInterfaceService virshNetworkInterfaceService(){
+        return new VirshInterfaceServiceImpl();
     }
 
     @Bean

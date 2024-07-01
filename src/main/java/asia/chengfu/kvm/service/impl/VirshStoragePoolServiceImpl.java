@@ -32,32 +32,33 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
      *
      * @param name 存储池名称
      * @param dir  存储池目录
+     * @return 命令执行结果
      */
     @Override
-    public void createStoragePool(String name, String dir) {
-        createStoragePool(name, "dir", dir);
+    public String createStoragePool(String name, String dir) {
+        return createStoragePool(name, "dir", dir);
     }
 
     /**
      * 创建存储池
+     *
      * @param name 存储池名称
      * @param type 存储类型
-     * @param dir 存储池地址
+     * @param dir  存储池地址
+     * @return 命令执行结果
      */
     @Override
-    public void createStoragePool(String name, String type, String dir) {
+    public String createStoragePool(String name, String type, String dir) {
         Map<String, String> param = Map.of("name", name, "type", type, "target", dir);
 
         if (!FileUtil.isDirectory(dir)) {
             FileUtil.mkdir(dir);
         }
 
-        run(StrUtil.format(CREATE_POOL, param));
-
-        run(StrUtil.format(ENABLE_AUTOSTART, param));
-
         // 不需要这步操作
         // run(StrUtil.format(START_POOL, param));
+        return run(StrUtil.format(CREATE_POOL, param)) + "\n" +
+                run(StrUtil.format(ENABLE_AUTOSTART, param));
     }
 
     /**
@@ -74,11 +75,12 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
      * 销毁存储池
      *
      * @param name 存储池名称
+     * @return 命令执行结果
      */
     @Override
-    public void destroyStoragePool(String name) {
+    public String destroyStoragePool(String name) {
         Map<String, String> param = Map.of("name", name);
-        run(StrUtil.format(DESTROY_POOL, param));
+        return run(StrUtil.format(DESTROY_POOL, param));
         // run(StrUtil.format(UNDEFINE_POOL, param));
     }
 
@@ -86,11 +88,12 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
      * 禁用存储池的自动启动
      *
      * @param name 存储池名称
+     * @return 命令执行结果
      */
     @Override
-    public void disableStoragePoolAutostart(String name) {
+    public String disableStoragePoolAutostart(String name) {
         Map<String, String> param = Map.of("name", name);
-        run(StrUtil.format(DISABLE_AUTOSTART, param));
+        return run(StrUtil.format(DISABLE_AUTOSTART, param));
     }
 
     /**
@@ -108,11 +111,12 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
      * 创建默认存储池
      *
      * @param path 默认存储池的路径
+     * @return 命令执行结果
      */
     @Override
-    public void createDefaultStoragePool(String path) {
+    public String createDefaultStoragePool(String path) {
         String name = "default";
-        createStoragePool(name, path);
+        return createStoragePool(name, path);
     }
 
     /**
@@ -141,41 +145,49 @@ public class VirshStoragePoolServiceImpl extends AbstractVirshService implements
 
     /**
      * 激活存储池
+     *
      * @param name 存储池名称
+     * @return 命令执行结果
      */
     @Override
-    public void startStoragePool(String name){
+    public String startStoragePool(String name){
         Map<String, String> param = Map.of("name", name);
-        run(StrUtil.format(START_POOL, param));
+        return run(StrUtil.format(START_POOL, param));
     }
 
     /**
      * 刷新存储池
+     *
      * @param name 存储池名称
+     * @return 命令执行结果
      */
     @Override
-    public void refreshStoragePool(String name){
+    public String refreshStoragePool(String name){
         Map<String, String> param = Map.of("name", name);
-        run(StrUtil.format(REFRESH_POOL, param));
+        return run(StrUtil.format(REFRESH_POOL, param));
     }
 
     /**
      * 取消定义存储池
+     *
      * @param name 存储池名称
+     * @return 命令执行结果
      */
     @Override
-    public void undefineStoragePool(String name){
+    public String undefineStoragePool(String name){
         Map<String, String> param = Map.of("name", name);
-        run(StrUtil.format(UNDEFINE_POOL, param));
+        return run(StrUtil.format(UNDEFINE_POOL, param));
     }
 
     /**
      * 删除存储池
+     *
      * @param name 存储池名称
+     * @return 命令执行结果
      */
     @Override
-    public void deleteStoragePool(String name) {
+    public String deleteStoragePool(String name) {
         Map<String, String> param = Map.of("name", name);
-        run(StrUtil.format(DELETE_POOL, param));
+        return run(StrUtil.format(DELETE_POOL, param));
     }
 }

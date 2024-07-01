@@ -25,19 +25,23 @@ public interface VirshStorageVolumeService extends VirshService {
 
     /**
      * 删除指定的卷
+     *
      * @param name 卷名称
      * @param pool 存储池名称
+     * @return
      */
-    void deleteVolume(String name, String pool);
+    String deleteVolume(String name, String pool);
 
     /**
      * 创建卷
-     * @param name 卷名称
-     * @param pool 存储池名称
+     *
+     * @param name     卷名称
+     * @param pool     存储池名称
      * @param capacity 容量大小
-     * @param format 卷格式类型：raw、bochs、qcow、qcow2、qed、vmdk
+     * @param format   卷格式类型：raw、bochs、qcow、qcow2、qed、vmdk
+     * @return
      */
-    void createVolume(String name, String pool, String capacity, String format);
+    String createVolume(String name, String pool, String capacity, String format);
 
     /**
      * 获取支持的卷格式类型

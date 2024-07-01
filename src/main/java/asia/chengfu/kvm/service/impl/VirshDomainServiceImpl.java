@@ -37,40 +37,44 @@ public class VirshDomainServiceImpl extends AbstractVirshService implements Virs
      * 启动指定的域
      *
      * @param name 域名称
+     * @return 命令执行结果
      */
     @Override
-    public void startDomain(String name) {
-        run(StrUtil.format(START_DOMAIN, Map.of("name", name)));
+    public String startDomain(String name) {
+        return run(StrUtil.format(START_DOMAIN, Map.of("name", name)));
     }
 
     /**
      * 挂起指定的域
      *
      * @param name 域名称
+     * @return 命令执行结果
      */
     @Override
-    public void suspendDomain(String name) {
-        run(StrUtil.format(SUSPEND_DOMAIN, Map.of("name", name)));
+    public String suspendDomain(String name) {
+        return run(StrUtil.format(SUSPEND_DOMAIN, Map.of("name", name)));
     }
 
     /**
      * 恢复指定的域
      *
      * @param name 域名称
+     * @return 命令执行结果
      */
     @Override
-    public void resumeDomain(String name) {
-        run(StrUtil.format(RESUME_DOMAIN, Map.of("name", name)));
+    public String resumeDomain(String name) {
+        return run(StrUtil.format(RESUME_DOMAIN, Map.of("name", name)));
     }
 
     /**
      * 重置指定的域
      *
      * @param name 域名称
+     * @return 命令执行结果
      */
     @Override
-    public void resetDomain(String name) {
-        run(StrUtil.format(RESET_DOMAIN, Map.of("name", name)));
+    public String resetDomain(String name) {
+        return run(StrUtil.format(RESET_DOMAIN, Map.of("name", name)));
     }
 
     /**
@@ -78,13 +82,14 @@ public class VirshDomainServiceImpl extends AbstractVirshService implements Virs
      *
      * @param name  域名称
      * @param force 是否强制关闭
+     * @return 命令执行结果
      */
     @Override
-    public void shutdownDomain(String name, boolean force) {
+    public String shutdownDomain(String name, boolean force) {
         if (force) {
-            run(StrUtil.format(DESTROY_DOMAIN, Map.of("name", name)));
+            return run(StrUtil.format(DESTROY_DOMAIN, Map.of("name", name)));
         } else {
-            run(StrUtil.format(SHUTDOWN_DOMAIN, Map.of("name", name)));
+            return run(StrUtil.format(SHUTDOWN_DOMAIN, Map.of("name", name)));
         }
     }
 
@@ -92,10 +97,11 @@ public class VirshDomainServiceImpl extends AbstractVirshService implements Virs
      * 重启指定的域
      *
      * @param name 域名称
+     * @return
      */
     @Override
-    public void rebootDomain(String name) {
-        run(StrUtil.format(REBOOT_DOMAIN, Map.of("name", name)));
+    public String rebootDomain(String name) {
+        return run(StrUtil.format(REBOOT_DOMAIN, Map.of("name", name)));
     }
 
     /**
@@ -110,9 +116,10 @@ public class VirshDomainServiceImpl extends AbstractVirshService implements Virs
      * @param volName     卷名称
      * @param voltype     卷类型
      * @param volCapacity 卷容量
+     * @return 命令执行结果
      */
     @Override
-    public void createDomain(String name, String memory, String cpu, String iso, String osVariant, String pool, String volName, String voltype, String volCapacity) {
+    public String createDomain(String name, String memory, String cpu, String iso, String osVariant, String pool, String volName, String voltype, String volCapacity) {
         // 1. 创建卷
         String volumeName = StrUtil.isBlank(volName) ? IdUtil.randomUUID() + "." + voltype : volName;
         volumeService.createVolume(volumeName, pool, volCapacity, voltype);
@@ -129,7 +136,7 @@ public class VirshDomainServiceImpl extends AbstractVirshService implements Virs
                 "graphics", "vnc,listen=0.0.0.0"
         ), List.of("noautoconsole"));
 
-        Command.of("virt-install", params).execute();
+        return Command.of("virt-install", params).execute();
     }
 
     /**

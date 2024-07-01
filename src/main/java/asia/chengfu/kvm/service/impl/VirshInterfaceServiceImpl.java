@@ -1,13 +1,13 @@
 package asia.chengfu.kvm.service.impl;
 
 import asia.chengfu.kvm.service.AbstractVirshService;
-import asia.chengfu.kvm.service.VirshNetworkInterfaceService;
+import asia.chengfu.kvm.service.VirshInterfaceService;
 import cn.hutool.core.util.StrUtil;
 
 import java.util.List;
 import java.util.Map;
 
-public class VirshNetworkInterfaceServiceImpl extends AbstractVirshService implements VirshNetworkInterfaceService {
+public class VirshInterfaceServiceImpl extends AbstractVirshService implements VirshInterfaceService {
     // Virsh命令常量
     private static final String LIST_INTERFACES = "iface-list --all";
     private static final String GET_INTERFACE_INFO = "iface-dumpxml --interface {name}";

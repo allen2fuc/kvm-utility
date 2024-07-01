@@ -9,54 +9,68 @@ import java.util.Map;
 public interface VirshDomainService {
     /**
      * 启动指定的域
+     *
      * @param name 域名称
+     * @return
      */
-    void startDomain(String name);
+    String startDomain(String name);
 
     /**
      * 挂起指定的域
+     *
      * @param name 域名称
+     * @return
      */
-    void suspendDomain(String name);
+    String suspendDomain(String name);
 
     /**
      * 恢复指定的域
+     *
      * @param name 域名称
+     * @return
      */
-    void resumeDomain(String name);
+    String resumeDomain(String name);
 
     /**
      * 重置指定的域
+     *
      * @param name 域名称
+     * @return
      */
-    void resetDomain(String name);
+    String resetDomain(String name);
 
     /**
      * 关闭指定的域
-     * @param name 域名称
+     *
+     * @param name  域名称
      * @param force 是否强制关闭
+     * @return
      */
-    void shutdownDomain(String name, boolean force);
+    String shutdownDomain(String name, boolean force);
 
     /**
      * 重启指定的域
+     *
      * @param name 域名称
+     * @return
      */
-    void rebootDomain(String name);
+    String rebootDomain(String name);
 
     /**
      * 创建一个新域
-     * @param name 域名称
-     * @param memory 内存大小
-     * @param cpu CPU数量
-     * @param iso ISO镜像路径
-     * @param osVariant 操作系统类型
-     * @param pool 存储池名称
-     * @param volName 卷名称
-     * @param voltype 卷类型
+     *
+     * @param name        域名称
+     * @param memory      内存大小
+     * @param cpu         CPU数量
+     * @param iso         ISO镜像路径
+     * @param osVariant   操作系统类型
+     * @param pool        存储池名称
+     * @param volName     卷名称
+     * @param voltype     卷类型
      * @param volCapacity 卷容量
+     * @return
      */
-    void createDomain(String name, String memory, String cpu, String iso, String osVariant, String pool, String volName, String voltype, String volCapacity);
+    String createDomain(String name, String memory, String cpu, String iso, String osVariant, String pool, String volName, String voltype, String volCapacity);
 
     /**
      * 获取指定域的XML描述

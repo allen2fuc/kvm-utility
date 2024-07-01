@@ -13,16 +13,19 @@ public interface VirshStoragePoolService {
      *
      * @param name   存储池名称
      * @param target 存储池目标目录
+     * @return
      */
-    void createStoragePool(String name, String target);
+    String createStoragePool(String name, String target);
 
     /**
      * 创建存储池
+     *
      * @param name 存储池名称
      * @param type 存储类型
-     * @param dir 存储池地址
+     * @param dir  存储池地址
+     * @return
      */
-    void createStoragePool(String name, String type, String dir);
+    String createStoragePool(String name, String type, String dir);
 
     /**
      * 列出所有存储池
@@ -35,15 +38,17 @@ public interface VirshStoragePoolService {
      * 销毁指定存储池
      *
      * @param name 存储池名称
+     * @return
      */
-    void destroyStoragePool(String name);
+    String destroyStoragePool(String name);
 
     /**
      * 禁用指定存储池的自动启动
      *
      * @param name 存储池名称
+     * @return
      */
-    void disableStoragePoolAutostart(String name);
+    String disableStoragePoolAutostart(String name);
 
     /**
      * 获取指定存储池的信息
@@ -57,8 +62,9 @@ public interface VirshStoragePoolService {
      * 创建默认存储池
      *
      * @param path 默认存储池路径
+     * @return
      */
-    void createDefaultStoragePool(String path);
+    String createDefaultStoragePool(String path);
 
     /**
      * 导出指定存储池的XML描述
@@ -78,25 +84,33 @@ public interface VirshStoragePoolService {
 
     /**
      * 激活存储池
+     *
      * @param name 存储池名称
+     * @return
      */
-    void startStoragePool(String name);
+    String startStoragePool(String name);
 
     /**
      * 刷新定义存储池
+     *
      * @param name 存储池名称
+     * @return
      */
-    void refreshStoragePool(String name);
+    String refreshStoragePool(String name);
 
     /**
      * 取消定义存储池
+     *
      * @param name 存储池名称
+     * @return
      */
-    void undefineStoragePool(String name);
+    String undefineStoragePool(String name);
 
     /**
      * 删除存储池
+     *
      * @param name 存储池名称
+     * @return
      */
-    void deleteStoragePool(String name);
+    String deleteStoragePool(String name);
 }

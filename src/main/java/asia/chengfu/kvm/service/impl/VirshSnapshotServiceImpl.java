@@ -32,10 +32,11 @@ public class VirshSnapshotServiceImpl extends AbstractVirshService implements Vi
      *
      * @param domain       虚拟机域名
      * @param snapshotName 快照名
+     * @return 命令执行结果
      */
     @Override
-    public void revertSnapshot(String domain, String snapshotName) {
-        run(StrUtil.format(REVERT_SNAPSHOT, Map.of("domain", domain, "name", snapshotName)));
+    public String revertSnapshot(String domain, String snapshotName) {
+        return run(StrUtil.format(REVERT_SNAPSHOT, Map.of("domain", domain, "name", snapshotName)));
     }
 
     /**
@@ -43,10 +44,11 @@ public class VirshSnapshotServiceImpl extends AbstractVirshService implements Vi
      *
      * @param domain       虚拟机域名
      * @param snapshotName 快照名
+     * @return 命令执行结果
      */
     @Override
-    public void deleteSnapshot(String domain, String snapshotName) {
-        run(StrUtil.format(DELETE_SNAPSHOT, Map.of("domain", domain, "name", snapshotName)));
+    public String deleteSnapshot(String domain, String snapshotName) {
+        return run(StrUtil.format(DELETE_SNAPSHOT, Map.of("domain", domain, "name", snapshotName)));
     }
 
     /**
@@ -54,10 +56,11 @@ public class VirshSnapshotServiceImpl extends AbstractVirshService implements Vi
      *
      * @param domain       虚拟机域名
      * @param snapshotName 快照名
+     * @return 命令执行结果
      */
     @Override
-    public void createSnapshot(String domain, String snapshotName) {
-        run(StrUtil.format(CREATE_SNAPSHOT, Map.of("domain", domain, "name", snapshotName)));
+    public String createSnapshot(String domain, String snapshotName) {
+        return run(StrUtil.format(CREATE_SNAPSHOT, Map.of("domain", domain, "name", snapshotName)));
     }
 
     /**

@@ -21,24 +21,27 @@ public interface VirshSnapshotService {
      *
      * @param domain       域名称
      * @param snapshotName 快照名称
+     * @return
      */
-    void revertSnapshot(String domain, String snapshotName);
+    String revertSnapshot(String domain, String snapshotName);
 
     /**
      * 删除指定快照
      *
      * @param domain       域名称
      * @param snapshotName 快照名称
+     * @return
      */
-    void deleteSnapshot(String domain, String snapshotName);
+    String deleteSnapshot(String domain, String snapshotName);
 
     /**
      * 创建一个新快照
      *
      * @param domain       域名称
      * @param snapshotName 快照名称
+     * @return
      */
-    void createSnapshot(String domain, String snapshotName);
+    String createSnapshot(String domain, String snapshotName);
 
     /**
      * 获取指定快照的信息
