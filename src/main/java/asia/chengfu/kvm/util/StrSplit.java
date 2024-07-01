@@ -48,7 +48,7 @@ public final class StrSplit {
             }
 
             boolean isFirst = index == 0;
-            List<String> columns = StrSplitter.splitTrim(line, columnSeparator, false);
+            List<String> columns = StrSplitter.splitTrim(line, columnSeparator, true);
 
             if (isFirst) {
                 keys = columns;
