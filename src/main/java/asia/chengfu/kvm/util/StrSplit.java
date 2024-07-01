@@ -96,7 +96,7 @@ public final class StrSplit {
         for (int index = 0; index < lines.size(); index++) {
             String line = lines.get(index);
 
-            if (!lineFilter.test(line)) {
+            if (lineFilter.test(line)) {
                 continue;
             }
 
