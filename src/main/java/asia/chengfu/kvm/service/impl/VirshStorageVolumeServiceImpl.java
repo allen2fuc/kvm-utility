@@ -16,7 +16,7 @@ public class VirshStorageVolumeServiceImpl extends AbstractVirshService implemen
     private static final String LIST_VOLUMES = "vol-list --pool {pool}";
     private static final String DELETE_VOLUME = "vol-delete --vol {name} --pool {pool}";
     private static final String DUMP_VOLUME_XML = "vol-dumpxml --vol {name} --pool {pool}";
-    private static final String CREATE_VOLUME = "vol-create-as --vol {name} --pool {pool} --capacity {capacity} --format {format}";
+    private static final String CREATE_VOLUME = "vol-create-as --name {name} --pool {pool} --capacity {capacity} --format {format}";
 
     /**
      * 获取卷信息
