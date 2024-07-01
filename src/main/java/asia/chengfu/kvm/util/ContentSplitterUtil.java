@@ -20,7 +20,7 @@ public final class ContentSplitterUtil {
         return StrSplit.splitToMap(infoContent,
                 StrPool.LF,
                 StrPool.COLON,
-                StrUtil::isNotBlank,
+                StrUtil::isBlank,
                 StrUtil::trim,
                 (k, v) -> StrUtil.trim(v));
     }
